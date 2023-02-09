@@ -1,0 +1,33 @@
+<div >
+    <div class="headers">
+    <h2 class="table-title">Gestion des categories</h2>
+    <button class="btn btn-success" >Nouveau</button>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+        <th>Nom de sous categorie</th>
+        <th>Image</th>
+        <th></th>
+        <th></th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor ="let scat of scategories">
+                <td>{{scat.nomscategorie}}</td>
+                <td><img src={{scat.imagescat}} alt="" width="130"
+                height="70"/></td>
+                <td>
+                <button class="btn btn-outline-primary" >Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-danger">Delete</button>
+                    </td>
+                    </tr>
+
+            </tbody>
+    </table>
+
+
+
+</div>

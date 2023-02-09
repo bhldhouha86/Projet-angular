@@ -1,0 +1,96 @@
+
+<div>
+    <div class="headers" >
+        <h2 class="table-title">Gestion Des Articles</h2>
+        
+    </div>
+
+    <div style="padding-left: 25px;">
+        <button class="btn btn-success" (click)="openForm(null)">New</button>
+        <div class="col-md-2">
+            Filtre par sous catégorie <select class="form-control col-lg-8"
+            [(ngModel)]="term">
+            <option *ngFor="let c of scategories">{{c.nomscategorie}}</option>
+            </select>
+            </div>
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>designation</th>
+                <th>image </th>
+                <th>marque</th>
+                <th>qtestock</th>
+                <th>prix</th>
+                <th></th>
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody class="text-container">
+            <tr *ngFor="let art of articles | filter:term">
+                <td>{{art.designation}}</td>
+                <td><img src="{{art.imageart}}" alt="" width="130" height="70"></td>
+                <td>{{art.marque}}</td>
+                <td>{{art.qtestock}}</td>
+                <td>{{art.prix}}</td>
+                <td><button class="btn btn-outline-primary" (click)="openForm(art)">Edit</button></td>
+                <td><button class="btn btn-outline-danger" (click)="supprimerArticle(art._id)">Delete</button></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div>
+    <div class="form-wrapper" *ngIf="showForm">
+        <div class="mobile-form">                
+    <h2 class="text-center text-info">{{formHeader}}</h2>
+    <div class="group">
+        <label for="">Reference</label>
+        <input type="text" class="form-control" [(ngModel)]="reference"
+        name="reference">
+        </div>
+    <div class="group">
+    <label for="">Désignation</label>
+    <input type="text" class="form-control" [(ngModel)]="designation"
+    name="designation">
+    </div>
+    <div class="group">
+    <label for="">Image</label>
+    <input type="text" class="form-control" [(ngModel)]="imageart"
+    name="imageart" />
+    <div *ngIf="imageart">
+        <img src={{imageart}} width="100" height="50"/>
+    </div>
+    </div>
+    <div class="group">
+        <label for="">marque</label>
+        <input type="text" class="form-control" [(ngModel)]="marque"
+        name="marque">
+        </div>
+        <div class="group">
+            <label for="">scategorieID</label>
+                <select  name="nomscategorie" class="form-select" aria-label="Default select example"   [(ngModel)]="scategorieID" >
+                    <option selected>choisir une sous categories</option>
+                    <option *ngFor="let scat of scategories" value="{{scat._id}}">{{scat.nomscategorie}}</option>
+                  </select>
+            </div>
+        <div class="group">
+            <label for="">Qte Stock</label>
+            <input type="text" class="form-control" [(ngModel)]="qtestock"
+            name="qtestk">
+            </div>
+        <div class="group">
+            <label for="">prix</label>
+            <input type="text" class="form-control" [(ngModel)]="prix"
+            name="prix">
+            </div>
+          
+                
+                 
+    <div class="action">
+    <button class="btn btn-primary save" (click)="enregistrer()">Enregistrer</button>
+    <button class="btn btn-danger cancel" (click)="closeForm()">Annuler</button>
+    </div>
+    </div>
+</div>
